@@ -1,0 +1,16 @@
+{
+  "name": "covid_portal",
+  "version": "1.0.0",
+  "description": "Dockerized environment with a database, a back-end and a front-end application.",
+  "scripts": {
+    "build:back": "docker compose build nestjs-app",
+    "build:front": "docker compose build nextjs-app",
+    "start": "docker compose up --build",
+    "start:db": "docker compose up db",
+    "start:back": "docker compose up -d backend",
+    "start:front": "docker compose up -d frontend",
+    "clean": "docker-compose down -v"
+  },
+  "author": "Le Minh Tien",
+  "license": "ISC"
+}
