@@ -1,0 +1,88 @@
+{
+  "columns": [
+    { "id": "id", "label": "STT", "minWidth": 70 },
+    { "id": "name", "label": "Tên điểm tiêm", "minWidth": 170 },
+    {
+      "id": "detailAddress",
+      "label": "Số nhà, tên đường",
+      "minWidth": 170
+    },
+    {
+      "id": "ward",
+      "label": "Xã/Phường",
+      "minWidth": 170
+    },
+    {
+      "id": "district",
+      "label": "Quận/Huyện",
+      "minWidth": 170
+    },
+    {
+      "id": "province",
+      "label": "Tỉnh/Thành phố ",
+      "minWidth": 170
+    },
+    {
+      "id": "manager",
+      "label": "Người đứng đầu cơ sở tiêm chủng",
+      "minWidth": 170
+    },
+    {
+      "id": "numberOfTables",
+      "label": "Số bàn tiêm",
+      "minWidth": 170
+    }
+  ],
+  "rows": [
+    {
+      "id": 1,
+      "name": "Bệnh viện Đa khoa Medlatec",
+      "detail": "42-44 Nghĩa Dũng",
+      "ward": "Phúc Xá",
+      "district": "Quận Ba Đình",
+      "province": "Thành phố Hà Nội",
+      "owner": "Nguyễn Thị Kim Liên",
+      "quantity": 6
+    },
+    {
+      "id": 2,
+      "name": "Bệnh viện Đa khoa Medlatec",
+      "detail": "42-44 Nghĩa Dũng",
+      "ward": "Phúc Xá",
+      "district": "Quận Ba Đình",
+      "province": "Thành phố Hà Nội",
+      "owner": "Nguyễn Thị Kim Liên",
+      "quantity": 6
+    },
+    {
+      "id": 3,
+      "name": "Bệnh viện Đa khoa Medlatec",
+      "detail": "42-44 Nghĩa Dũng",
+      "ward": "Phúc Xá",
+      "district": "Quận Ba Đình",
+      "province": "Thành phố Hà Nội",
+      "owner": "Nguyễn Thị Kim Liên",
+      "quantity": 6
+    },
+    {
+      "id": 4,
+      "name": "Bệnh viện Đa khoa Medlatec",
+      "detail": "42-44 Nghĩa Dũng",
+      "ward": "Phúc Xá",
+      "district": "Quận Ba Đình",
+      "province": "Thành phố Hà Nội",
+      "owner": "Nguyễn Thị Kim Liên",
+      "quantity": 6
+    },
+    {
+      "id": 5,
+      "name": "Bệnh viện Đa khoa Medlatec",
+      "detail": "42-44 Nghĩa Dũng",
+      "ward": "Phúc Xá",
+      "district": "Quận Ba Đình",
+      "province": "Thành phố Hà Nội",
+      "owner": "Nguyễn Thị Kim Liên",
+      "quantity": 6
+    }
+  ]
+}

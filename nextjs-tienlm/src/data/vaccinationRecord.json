@@ -1,0 +1,41 @@
+{
+  "columns": [
+    { "id": "id", "label": "Mũi số", "minWidth": 70 },
+    {
+      "id": "injectionDate",
+      "label": "Thời gian tiêm",
+      "minWidth": 170
+    },
+    {
+      "id": "vaccineName",
+      "label": "Tên vắc xin",
+      "minWidth": 170
+    },
+    {
+      "id": "batchNumber",
+      "label": "Số lô",
+      "minWidth": 170
+    },
+    {
+      "id": "vaccinationSite",
+      "label": "Nơi tiêm",
+      "minWidth": 170
+    }
+  ],
+  "rows": [
+    {
+      "id": 1,
+      "time": "08/09/2021 - 16:56",
+      "name": "COVID-19 Vaccine AstraZeneca",
+      "code": "NJ0342",
+      "address": "Quận Ba Đình"
+    },
+    {
+      "id": 2,
+      "time": "08/09/2021 - 16:56",
+      "name": "COVID-19 Vaccine AstraZeneca",
+      "code": "NJ0343",
+      "address": "Quận Ba Đình"
+    }
+  ]
+}

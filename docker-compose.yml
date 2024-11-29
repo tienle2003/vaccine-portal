@@ -1,0 +1,50 @@
+services:
+  db:
+    container_name: mysql-db
+    image: mysql:8.0
+    restart: always
+    env_file: ./.env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./vaccine_portal.sql:/docker-entrypoint-initdb.d/vaccine_portal.sql
+    networks:
+      - app-network
+  backend:
+    container_name: nestjs-app
+    build:
+      context: ./nestjs-tienlm
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    env_file: ./.env
+    depends_on:
+      - db
+    networks:
+      - app-network
+  frontend:
+    container_name: nextjs-app
+    build:
+      context: ./nextjs-tienlm
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8080
+    depends_on:
+      - db
+      - backend
+    networks:
+      - app-network
+volumes:
+  db_data:
+networks:
+  app-network:
