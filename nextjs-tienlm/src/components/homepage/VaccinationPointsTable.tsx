@@ -172,7 +172,7 @@ const VaccinationPointsTable: React.FC = () => {
             type="submit"
             size="small"
             variant="contained"
-            className="bg-primary ml-auto flex items-center justify-between"
+            className="bg-primary text-white flex items-center justify-between"
           >
             <SearchIcon />
             Tìm kiếm
@@ -181,7 +181,7 @@ const VaccinationPointsTable: React.FC = () => {
             size="small"
             variant="contained"
             color="error"
-            className="ml-auto flex items-center justify-around"
+            className="flex items-center justify-around"
             onClick={handleClearFilters}
           >
             <ClearIcon />
