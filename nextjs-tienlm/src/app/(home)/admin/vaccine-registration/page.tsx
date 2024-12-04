@@ -127,7 +127,7 @@ const VaccineRegistration = () => {
           type="submit"
           size="small"
           variant="contained"
-          className="bg-primary ml-auto flex items-center justify-between"
+          className="bg-primary flex items-center justify-between"
         >
           <SearchIcon />
           Tìm kiếm
