@@ -19,6 +19,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Blacklist } from './entities/blacklist.entity';
 import { LessThanOrEqual, Repository } from 'typeorm';
 import { Cron, CronExpression } from '@nestjs/schedule';
+import { InjectQueue } from '@nestjs/bullmq';
+import { Queue } from 'bullmq';
 
 @Injectable()
 export class AuthService {
@@ -26,10 +28,10 @@ export class AuthService {
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService,
-    private emailService: EmailService,
     private configService: ConfigService,
     @InjectRepository(Blacklist)
     private blacklistRepository: Repository<Blacklist>,
+    @InjectQueue('mail') private readonly mailQueue: Queue,
   ) {}
 
   async validateUser(email: string, password: string): Promise<User> {
@@ -128,7 +130,11 @@ export class AuthService {
     user.resetToken = token;
     user.resetTokenExpires = new Date(Date.now() + tokenExpires * 60 * 1000); //5 minutes
     await this.usersService.save(user);
-    await this.emailService.sendForgotPasswordEmail(user, token);
+    const message = {
+      user,
+      token,
+    };
+    await this.mailQueue.add('sendForgotPasswordEmail', message);
   }
 
   async resetPassword(resetPasswordDto: ResetPasswordDto) {

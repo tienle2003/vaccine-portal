@@ -16,6 +16,16 @@ services:
       - ./vaccine_portal.sql:/docker-entrypoint-initdb.d/vaccine_portal.sql
     networks:
       - app-network
+  redis:
+    container_name: redis
+    image: redis:latest
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - cache:/data
+    networks:
+      - app-network
   backend:
     container_name: nestjs-app
     build:
@@ -26,6 +36,7 @@ services:
     env_file: ./.env
     depends_on:
       - db
+      - redis
     networks:
       - app-network
   frontend:
@@ -41,6 +52,7 @@ services:
       - NEXT_PUBLIC_API_URL=http://localhost:8080
     depends_on:
       - db
+      - redis
       - backend
     networks:
       - app-network

@@ -10,6 +10,8 @@ import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Blacklist } from './entities/blacklist.entity';
 import { ScheduleModule } from '@nestjs/schedule';
+import { BullModule } from '@nestjs/bullmq';
+import { MailConsumer } from '../email/email.processor';
 
 @Module({
   imports: [
@@ -27,10 +29,20 @@ import { ScheduleModule } from '@nestjs/schedule';
       }),
       inject: [ConfigService],
     }),
+    BullModule.forRootAsync({
+      useFactory: async (configService: ConfigService) => ({
+        connection: {
+          host: configService.get<string>('REDIS_HOST'),
+          port: configService.get<number>('REDIS_PORT'),
+        },
+      }),
+      inject: [ConfigService],
+    }),
+    BullModule.registerQueue({ name: 'mail' }),
     PassportModule,
     EmailModule,
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtRefreshStrategy],
+  providers: [AuthService, JwtRefreshStrategy, MailConsumer],
 })
 export class AuthModule {}
