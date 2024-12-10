@@ -6,15 +6,14 @@ import { RedisService } from './redis.service';
 @Module({
   imports: [
     RedisModule.forRootAsync({
-      useFactory: async (configService: ConfigService) => ({
-        type: 'single',
-        nodes: [
-          {
-            host: configService.get<string>('REDIS_HOST'),
-            port: configService.get<number>('REDIS_PORT'),
-          },
-        ],
-      }),
+      useFactory: async (configService: ConfigService) => {
+        const redisHost = configService.get('REDIS_HOST');
+        const redisPost = configService.get('REDIS_POR');
+        return {
+          type: 'single',
+          url: `redis://${redisHost}:${redisPost}`,
+        };
+      },
       inject: [ConfigService],
       imports: [ConfigModule],
     }),
