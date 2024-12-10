@@ -1,4 +1,7 @@
 import {
+  BadRequestException,
+  HttpException,
+  HttpStatus,
   Injectable,
   Logger,
   NotFoundException,
@@ -10,7 +13,6 @@ import { User } from '../users/entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { LoginResponseDto } from './dto/login-response.dto';
-import { EmailService } from '../email/email.service';
 import { ConfigService } from '@nestjs/config';
 import { ForgotPasswordDto } from 'src/modules/auth/dto/forgot-password.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
@@ -21,6 +23,9 @@ import { LessThanOrEqual, Repository } from 'typeorm';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectQueue } from '@nestjs/bullmq';
 import { Queue } from 'bullmq';
+import {} from '@nestjs/common';
+import { RedisService } from '../redis/redis.service';
+import { queueName } from 'src/common/utils/queueName';
 
 @Injectable()
 export class AuthService {
@@ -29,9 +34,10 @@ export class AuthService {
     private usersService: UsersService,
     private jwtService: JwtService,
     private configService: ConfigService,
+    private redisService: RedisService,
     @InjectRepository(Blacklist)
     private blacklistRepository: Repository<Blacklist>,
-    @InjectQueue('mail') private readonly mailQueue: Queue,
+    @InjectQueue(queueName.MAIL) private readonly mailQueue: Queue,
   ) {}
 
   async validateUser(email: string, password: string): Promise<User> {
@@ -126,6 +132,7 @@ export class AuthService {
     const tokenExpires = this.configService.get<number>(
       'RESET_PASSWORD_TOKEN_EXPIRES',
     );
+    await this.redisService.rateLimiter(user.id, 5, 60);
     const token = randomBytes(16).toString('hex');
     user.resetToken = token;
     user.resetTokenExpires = new Date(Date.now() + tokenExpires * 60 * 1000); //5 minutes

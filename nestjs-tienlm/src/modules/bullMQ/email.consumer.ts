@@ -1,10 +1,11 @@
 import { Processor, WorkerHost } from '@nestjs/bullmq';
 import { Job } from 'bullmq';
 import { Injectable } from '@nestjs/common';
-import { EmailService } from './email.service';
+import { queueName } from 'src/common/utils/queueName';
+import { EmailService } from '../email/email.service';
 
 @Injectable()
-@Processor('mail')
+@Processor(queueName.MAIL)
 export class MailConsumer extends WorkerHost {
   constructor(private readonly emailService: EmailService) {
     super();
