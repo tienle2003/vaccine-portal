@@ -1,10 +1,24 @@
-import { InjectRedis } from '@nestjs-modules/ioredis';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import Redis from 'ioredis';
 
 @Injectable()
 export class RedisService {
-  constructor(@InjectRedis() private readonly redis: Redis) {}
+  private redis: Redis;
+  constructor(private readonly configService: ConfigService) {
+    const redisHost = configService.get('REDIS_HOST');
+    const redisPort = configService.get('REDIS_PORT');
+    const redisPass = configService.get('REDIS_PASSWORD');
+    const redisUser = configService.get('REDIS_USER');
+    this.redis = new Redis({
+      host: redisHost,
+      port: redisPort,
+      password: redisPass,
+      username: redisUser,
+      tls: {},
+      enableTLSForSentinelMode: false,
+    });
+  }
   async rateLimiter(
     userId: number,
     limit: number,

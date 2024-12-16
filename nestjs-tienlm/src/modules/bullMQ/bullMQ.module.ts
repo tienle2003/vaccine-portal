@@ -12,6 +12,12 @@ import { MailConsumer } from './email.consumer';
         connection: {
           host: configService.get<string>('REDIS_HOST'),
           port: configService.get<number>('REDIS_PORT'),
+          password: configService.get<string>('REDIS_PASSWORD'),
+          username: configService.get<string>('REDIS_USER'),
+          // maxRetriesPerRequest: null,
+          // enableOfflineQueue: true,
+          enableTLSForSentinelMode: false,
+          tls: {},
         },
       }),
       inject: [ConfigService],
