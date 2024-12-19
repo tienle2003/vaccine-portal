@@ -14,8 +14,6 @@ import { MailConsumer } from './email.consumer';
           port: configService.get<number>('REDIS_PORT'),
           password: configService.get<string>('REDIS_PASSWORD'),
           username: configService.get<string>('REDIS_USER'),
-          // maxRetriesPerRequest: null,
-          // enableOfflineQueue: true,
           enableTLSForSentinelMode: false,
           tls: {},
         },

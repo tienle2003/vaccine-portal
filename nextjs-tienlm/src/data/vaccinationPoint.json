@@ -32,57 +32,5 @@
       "label": "Số bàn tiêm",
       "minWidth": 170
     }
-  ],
-  "rows": [
-    {
-      "id": 1,
-      "name": "Bệnh viện Đa khoa Medlatec",
-      "detail": "42-44 Nghĩa Dũng",
-      "ward": "Phúc Xá",
-      "district": "Quận Ba Đình",
-      "province": "Thành phố Hà Nội",
-      "owner": "Nguyễn Thị Kim Liên",
-      "quantity": 6
-    },
-    {
-      "id": 2,
-      "name": "Bệnh viện Đa khoa Medlatec",
-      "detail": "42-44 Nghĩa Dũng",
-      "ward": "Phúc Xá",
-      "district": "Quận Ba Đình",
-      "province": "Thành phố Hà Nội",
-      "owner": "Nguyễn Thị Kim Liên",
-      "quantity": 6
-    },
-    {
-      "id": 3,
-      "name": "Bệnh viện Đa khoa Medlatec",
-      "detail": "42-44 Nghĩa Dũng",
-      "ward": "Phúc Xá",
-      "district": "Quận Ba Đình",
-      "province": "Thành phố Hà Nội",
-      "owner": "Nguyễn Thị Kim Liên",
-      "quantity": 6
-    },
-    {
-      "id": 4,
-      "name": "Bệnh viện Đa khoa Medlatec",
-      "detail": "42-44 Nghĩa Dũng",
-      "ward": "Phúc Xá",
-      "district": "Quận Ba Đình",
-      "province": "Thành phố Hà Nội",
-      "owner": "Nguyễn Thị Kim Liên",
-      "quantity": 6
-    },
-    {
-      "id": 5,
-      "name": "Bệnh viện Đa khoa Medlatec",
-      "detail": "42-44 Nghĩa Dũng",
-      "ward": "Phúc Xá",
-      "district": "Quận Ba Đình",
-      "province": "Thành phố Hà Nội",
-      "owner": "Nguyễn Thị Kim Liên",
-      "quantity": 6
-    }
   ]
 }
